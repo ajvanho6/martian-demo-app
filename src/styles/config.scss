@@ -1,0 +1,47 @@
+$app-layout: (
+    base-border-radius: 10px,
+);
+
+$colors: (
+    background-1: #f5f6f8,
+    background-2: #e0e0e0,
+    background-3: #ebebeb,
+    background-4: #bbb,
+    background-5: #fff,
+    background-6: #1e3a5a,
+    background-7: #0080ff,
+    background-8: #d0021b,
+    background-9: #bababa,
+    background-10: #747f88,
+    background-11: #59c46d,
+    background-12: #b5e5c1,
+    text-1: #9b9b9b,
+    text-2: #747f88,
+    text-3: #1e3a5a,
+    text-4: #fff,
+    text-5: #0080ff,
+    text-6: #d0021b,
+    text-7: #59c46d,
+    text-8: #b9b9b9,
+    text-9: #ebebeb,
+    text-10: #e0e0e0,
+    text-11: #bbb,
+    text-12: #3c3c3b,
+);
+
+$typeface: (
+    primary-font-family: 'Roboto',
+    primary-font-letterform: sans-serif,
+    primary-font-size: 16px,
+    primary-font-weight: normal,
+    primary-font-style: normal,
+    secondary-font-weigth: bold,
+    third-font-weight: 500,
+    h1-font-size: 48px,
+    h2-font-size: 28px,
+    h3-font-size: 24px,
+    h4-font-size: 17px,
+    h5-font-size: 16px,
+    h6-font-size: 14px,
+    p-font-size: 16px,
+);

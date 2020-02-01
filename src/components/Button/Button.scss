@@ -1,0 +1,41 @@
+@import '../../styles/config';
+
+$component-class: martian-button;
+
+.#{$component-class} {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: map-get($app-layout, base-border-radius);
+    background-color: transparent;
+    font-size: map-get($typeface, primary-font-size);
+    font-weight: map-get($typeface, third-font-weight);
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, border-color 200ms ease-in-out;
+    justify-content: center;
+
+
+    &--primary {
+        background: map-get($colors, background-7);
+        color: map-get($colors, text-4);
+        padding: 8px 7px;
+        margin-top: 16px;
+
+        &:hover {
+            background: map-get($colors, background-6);
+        }
+
+        &.#{$component-class}--active {
+            background: map-get($colors, background-6);
+        }
+
+        &.#{$component-class}--disabled {
+            cursor: not-allowed;
+            background-color: map-get($colors, background-10);
+        }
+    }
+
+    &:focus {
+        outline-color: map-get($colors, background-7);
+    }
+}

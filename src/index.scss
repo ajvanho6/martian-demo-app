@@ -1,0 +1,18 @@
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+@import './styles/reset';
+@import './styles/box-sizing';
+@import './styles/config';
+
+// Basics
+html {
+    font-family: map-get($typeface, primary-font-family), map-get($typeface, primary-font-letterform);
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    background: map-get($colors, background-1);
+}

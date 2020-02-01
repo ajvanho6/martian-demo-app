@@ -1,0 +1,26 @@
+@import '../../styles/config';
+
+$component-class: martian-input-group;
+
+.#{$component-class} {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: 10px 0;
+
+    &--is-vertical {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: normal;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        margin-right: 10px;
+    }
+
+}

@@ -1,0 +1,19 @@
+@import '../../styles/config';
+
+$component-class: martian-login;
+
+.#{$component-class} {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid map-get($colors, text-12);
+        border-radius: map-get($app-layout, base-border-radius);
+        padding: 32px;
+    }
+}

@@ -1,0 +1,14 @@
+@import '../../styles/config';
+
+$component-class: martian-label;
+
+.#{$component-class} {
+    color: map-get($colors, text-2);
+    font-family: map-get($typeface, primary-font-family), map-get($typeface, primary-font-letterform);
+    font-size: map-get($typeface, primary-font-size);
+    font-weight: map-get($typeface, third-font-weight);
+
+    &--has-error {
+        color: map-get($colors, background-8);
+    }
+}

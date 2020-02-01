@@ -1,0 +1,54 @@
+@import '../../styles/config';
+
+$component-class: martian-input;
+
+.#{$component-class} {
+    background-color: map-get($colors, background-5);
+    color: map-get($colors, text-3);
+    border: 1px solid map-get($colors, background-2);
+    border-radius: 3px;
+    padding: 7px 9px;
+    font-size: 14px;
+    max-width: 100%;
+
+
+    &__wrapper {
+        max-width: 100%;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+
+        &--is-full-width {
+            width: 100%;
+        }
+    }
+
+    &:focus {
+        outline-color: map-get($colors, background-7);
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    &[readonly] {
+        outline: 0;
+        cursor: default;
+        background-color: map-get($colors, background-18);
+        border-color: map-get($colors, background-19);
+        opacity: 1;
+
+        &:hover {
+            cursor: text;
+        }
+    }
+
+    &--has-error {
+        border-color: map-get($colors, background-8);
+
+        &:focus {
+            outline-color: map-get($colors, background-8);
+        }
+    }
+}
