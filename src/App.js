@@ -12,7 +12,7 @@ import Login from "./components/Login/Login"
 import Home from "./components/Home/Home"
 import Post from "./components/Post/Post"
 import { getMartian } from "./helpers"
-import CreateStore from "./hoc/CreateStore"
+import CreateStore from "./components/CreateStore/CreateStore"
 import { withStoreHOC } from "./hoc/WithStoreHOC"
 
 const WrappedHome = withStoreHOC(Home)
@@ -33,7 +33,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const App = () => {
   return (
-    <CreateStore>
+    <CreateStore message="Hello from">
       <Router key={new Date()}>
         <Header message="Hello from" />
         <Switch>

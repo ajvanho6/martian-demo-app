@@ -2,9 +2,11 @@
 import React from "react"
 import * as PropTypes from "prop-types"
 
-import StoreContext from "../context/StoreContext"
-import axiosInstance from "../api/axios"
+import StoreContext from "../../context/StoreContext"
+import axiosInstance from "../../api/axios"
 
+const BASE_USER_URL = "/api/users"
+const BASE_COMMENTS_URL = "/api/comments"
 const BASE_POST_URL = "/api/posts?&_limit=100"
 const FILTER_POST_URL_BY_USER = "/api/posts?userId="
 const GET_POST_URL_BY_ID = "/api/posts?id="
@@ -17,16 +19,44 @@ class CreateStore extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      posts: []
+      posts: [],
+      users: [],
+      comments: []
     }
   }
+
+  fetchCommentsApi = () =>
+    axiosInstance({
+      method: "GET",
+      url: BASE_COMMENTS_URL
+    })
+      .then(response => this.setState({ comments: response.data }))
+      .catch(error => {
+        console.log(error)
+      })
+
+  fetchUsersApi = () =>
+    axiosInstance({
+      method: "GET",
+      url: BASE_USER_URL
+    })
+      .then(response => {
+        this.setState({ users: response.data })
+        return this.fetchCommentsApi()
+      })
+      .catch(error => {
+        console.log(error)
+      })
 
   fetchPostsApi = () =>
     axiosInstance({
       method: "GET",
       url: BASE_POST_URL
     })
-      .then(response => this.setState({ posts: response.data }))
+      .then(response => {
+        this.setState({ posts: response.data })
+        return this.fetchUsersApi()
+      })
       .catch(error => {
         console.log(error)
       })
@@ -52,13 +82,20 @@ class CreateStore extends React.Component {
       })
 
   render() {
-    const { children } = this.props
-    const { posts } = this.state
+    const { children, message } = this.props
+    const { posts, users, comments } = this.state
+
+    // eslint-disable-next-line no-console
+    console.log(`${message} CreateStore Component.`)
 
     return (
       <StoreContext.Provider
         value={{
-          data: posts,
+          data: {
+            posts,
+            users,
+            comments
+          },
           fetchPostsPerUser: this.fetchPostsPerUserApi,
           fetchPostsById: this.fetchPostsPerPostIdApi,
           fetchPosts: this.fetchPostsApi
@@ -71,11 +108,13 @@ class CreateStore extends React.Component {
 }
 
 CreateStore.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  message: PropTypes.string
 }
 
 CreateStore.defaultProps = {
-  children: []
+  children: [],
+  message: ""
 }
 
 export default CreateStore

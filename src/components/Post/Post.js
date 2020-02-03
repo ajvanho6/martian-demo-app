@@ -25,7 +25,9 @@ const Post = ({ location, message }) => {
   }, [])
 
   const renderPost = () => {
-    const { data: posts } = context
+    const {
+      data: { posts }
+    } = context
 
     const singlePost = posts.find(post => {
       // eslint-disable-next-line

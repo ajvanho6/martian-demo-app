@@ -11,6 +11,10 @@ $component-class: martian-home;
         color: map-get($colors, text-12);
     }
 
+    h5 {
+        font-size: 18px;
+    }
+
     ul {
         list-style: none;
     }
@@ -27,7 +31,7 @@ $component-class: martian-home;
         padding: 16px 0;
 
         h6 {
-            font-size: 18px;
+            font-size: 24px;
             margin-bottom: 8px;
             color: map-get($colors, text-12);
         }
@@ -59,9 +63,30 @@ $component-class: martian-home;
 
         span {
             display: block;
-            text-align: right;
+            text-align: left;
             margin-top: 6px;
             margin-bottom: 8px;
+        }
+    }
+
+    &__post-comments {
+        margin: 40px auto 20px auto;
+        font-style: italic;
+        padding: 8px;
+
+    }
+
+    &__post-single-comment {
+
+        span {
+            margin-bottom: 8px;
+        }
+
+        span:last-child {
+            background-color: rgba(black, 0.25);
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 0;
         }
     }
 

@@ -36,11 +36,14 @@ class Home extends Component {
     this.setState({
       currentPage: Number(e.target.id)
     })
+    window.scrollTo(0, 0)
   }
 
   renderPageNumbers = () => {
     const { postsPerPage } = this.state
-    const { data: posts } = this.context
+    const {
+      data: { posts }
+    } = this.context
     const pageNumbers = []
 
     for (let i = 1; i <= Math.ceil(posts.length / postsPerPage); i += 1) {
@@ -65,9 +68,32 @@ class Home extends Component {
     })
   }
 
+  renderPostComments = id => {
+    const {
+      data: { comments }
+    } = this.context
+
+    return comments
+      .filter(comment => comment.postId === id)
+      .map(postComments => {
+        return (
+          <div
+            className="martian-home__post-single-comment"
+            key={postComments.id}
+          >
+            <span>{postComments.name}</span>
+            <span>{postComments.body}</span>
+            <span>email: {postComments.email}</span>
+          </div>
+        )
+      })
+  }
+
   renderPosts = () => {
     const { currentPage, postsPerPage, userId } = this.state
-    const { data: posts } = this.context
+    const {
+      data: { posts, users, comments }
+    } = this.context
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage
 
@@ -76,7 +102,7 @@ class Home extends Component {
         ? posts.slice(posts[0], posts.length)
         : posts.slice(indexOfFirstPost, indexOfLastPost)
 
-    if (currentPosts.length > 0) {
+    if (currentPosts.length > 0 && users.length > 0 && comments.length > 0) {
       return currentPosts.map(post => {
         return (
           <li
@@ -90,7 +116,14 @@ class Home extends Component {
           >
             <h6>{post.title}</h6>
             <p>{post.body}</p>
-            <span>User: {post.userId}</span>
+
+            <span>
+              Name: {users.find(user => user.id === post.userId).name}
+            </span>
+
+            <div className="martian-home__post-comments">
+              <h5>Comments:</h5> {this.renderPostComments(post.id)}
+            </div>
           </li>
         )
       })
